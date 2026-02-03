@@ -1,0 +1,28 @@
+C4Container
+title Container Diagram – ICT To Do List
+
+Person(student, "Student")
+Person(instructor, "Instructor")
+Person(admin, "System Administrator")
+
+System_Boundary(ictTodo, "ICT To Do List") {
+    Container(webApp, "Web App", "React SPA", "Provides task management and admin UI")
+    Container(mobileApp, "Mobile App", "Flutter", "Cross-platform mobile task management app")
+    Container(webApi, "Web API", "Python FastAPI", "Handles business logic and REST APIs")
+    ContainerDb(database, "Database", "PostgreSQL", "Stores users, tasks, sync settings, and history")
+    Container(myCoursesConnector, "MyCourses Connector", "Python Module / Service", "Integrates with MyCourses APIs")
+}
+
+System_Ext(myCourses, "MyCourses", "External e-learning system")
+
+Rel(student, webApp, "Uses", "HTTPS")
+Rel(student, mobileApp, "Uses", "HTTPS")
+Rel(instructor, webApp, "Uses", "HTTPS")
+Rel(admin, webApp, "Uses admin interface", "HTTPS")
+
+Rel(webApp, webApi, "Calls REST API", "HTTPS / JSON")
+Rel(mobileApp, webApi, "Calls REST API", "HTTPS / JSON")
+
+Rel(webApi, database, "Reads/Writes", "SQL via ORM")
+Rel(webApi, myCoursesConnector, "Triggers sync and data retrieval")
+Rel(myCoursesConnector, myCourses, "Retrieves courses, assignments, submissions", "HTTPS / JSON")

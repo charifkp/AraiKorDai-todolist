@@ -1,0 +1,23 @@
+%%{init:{"theme":"base","themeVariables":{}}}%%
+C4Component
+title Component Diagram – Web API (ICT To Do List)
+
+Container(webApi, "Web API", "FastAPI", "Backend service exposing REST APIs")
+
+Component(auth, "Authentication & Authorization", "Security", "Handles login, token validation, and access control")
+Component(taskMgmt, "Task Management", "Business Logic", "CRUD operations for manual and imported tasks")
+Component(syncOrchestrator, "MyCourses Sync Orchestrator", "Application Logic", "Controls sync workflow")
+Component(myCoursesClient, "MyCourses Client", "Integration", "Calls MyCourses APIs and parses JSON")
+Component(mapping, "Mapping Component", "Domain Logic", "Maps MyCourses data to internal task model")
+Component(syncHistory, "Sync History", "Logging", "Records sync results and errors")
+Component(dataAccess, "Data Access", "Repository / ORM", "Handles PostgreSQL persistence")
+
+ContainerDb(database, "PostgreSQL Database")
+
+Rel(auth, taskMgmt, "Authorizes requests")
+Rel(taskMgmt, dataAccess, "Uses")
+Rel(syncOrchestrator, myCoursesClient, "Calls")
+Rel(myCoursesClient, mapping, "Passes external data")
+Rel(mapping, taskMgmt, "Creates/updates imported tasks")
+Rel(syncOrchestrator, syncHistory, "Records sync result")
+Rel(dataAccess, database, "Reads/Writes", "SQL")

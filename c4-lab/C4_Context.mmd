@@ -1,3 +1,4 @@
+%%{init:{"theme":"base","themeVariables":{}}}%%
 C4Context
 title System Context Diagram – ICT To Do List
 
@@ -11,7 +12,7 @@ System_Ext(myCourses, "MyCourses", "External e-learning system providing course,
 Rel(student, ictTodo, "Uses to manage tasks", "Web / Mobile")
 Rel(instructor, ictTodo, "Uses to view teaching-related tasks", "Web")
 Rel(admin, ictTodo, "Uses admin interface", "Web")
-
 Rel(ictTodo, myCourses, "Retrieves courses, assignments, and submission status", "HTTPS / JSON")
 
 UpdateLayoutConfig($c4ShapeInRow="2")
+UpdateLayoutConfig($c4ShapePadding="20")
