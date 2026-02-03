@@ -1,9 +1,7 @@
 """Unit tests for Task 4: View All To-Do List Items functionality."""
 
-from datetime import datetime
 from unittest.mock import patch, MagicMock
 
-import pytest
 
 from src.models import TodoItem, Priority, Status
 from src.main import App
@@ -180,19 +178,13 @@ class TestViewAllTodos:
 
         # Find the indices of each todo title in the output
         new_task_index = next(
-            i
-            for i, call in enumerate(print_calls)
-            if "New task" in str(call)
+            i for i, call in enumerate(print_calls) if "New task" in str(call)
         )
         mid_task_index = next(
-            i
-            for i, call in enumerate(print_calls)
-            if "Middle task" in str(call)
+            i for i, call in enumerate(print_calls) if "Middle task" in str(call)
         )
         old_task_index = next(
-            i
-            for i, call in enumerate(print_calls)
-            if "Old task" in str(call)
+            i for i, call in enumerate(print_calls) if "Old task" in str(call)
         )
 
         # Verify they're in the correct order (newest first)

@@ -1,7 +1,6 @@
 """Unit tests for the models module."""
 
 import pytest
-from datetime import datetime
 from src.models import TodoItem, Priority, Status
 
 
