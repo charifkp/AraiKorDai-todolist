@@ -1,0 +1,23 @@
+graph TB
+    Student["👤 Student"]
+    Instructor["👤 Instructor"]
+    Admin["👤 System Administrator"]
+
+    WebApp["Web App<br/>(React SPA)"]
+    MobileApp["Mobile App<br/>(Flutter)"]
+    WebAPI["Web API<br/>(FastAPI)"]
+    DB["Database<br/>(PostgreSQL)"]
+    Connector["MyCourses Connector"]
+    MyCourses["MyCourses<br/>(External System)"]
+
+    Student --> WebApp
+    Student --> MobileApp
+    Instructor --> WebApp
+    Admin --> WebApp
+
+    WebApp -->|"HTTPS / JSON"| WebAPI
+    MobileApp -->|"HTTPS / JSON"| WebAPI
+
+    WebAPI -->|"SQL via ORM"| DB
+    WebAPI -->|"Internal Call"| Connector
+    Connector -->|"HTTPS / JSON"| MyCourses

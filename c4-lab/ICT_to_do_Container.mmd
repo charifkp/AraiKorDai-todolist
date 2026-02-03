@@ -1,0 +1,21 @@
+graph TB
+    WebAPI["Web API<br/>(FastAPI)"]
+
+    Auth["Authentication & Authorization"]
+    TaskMgmt["Task Management"]
+    SyncOrch["MyCourses Sync Orchestrator"]
+    MyCoursesClient["MyCourses Client"]
+    Mapper["Mapping Component"]
+    SyncHistory["Sync History"]
+    DataAccess["Data Access"]
+
+    WebAPI --> Auth
+    WebAPI --> TaskMgmt
+    WebAPI --> SyncOrch
+
+    SyncOrch --> MyCoursesClient
+    MyCoursesClient --> Mapper
+
+    TaskMgmt --> DataAccess
+    SyncOrch --> DataAccess
+    SyncHistory --> DataAccess
