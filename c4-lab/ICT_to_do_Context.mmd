@@ -4,8 +4,8 @@ graph TB
     Admin["👤 System Administrator"]
 
     WebApp["Web App<br/>(React SPA)"]
-    MobileApp["Mobile App<br/>(Flutter iOS/Android)"]
-    WebAPI["Web API<br/>(Python FastAPI)"]
+    MobileApp["Mobile App<br/>(Flutter)"]
+    WebAPI["Web API<br/>(FastAPI)"]
     DB["Database<br/>(PostgreSQL)"]
     Connector["MyCourses Connector"]
     MyCourses["MyCourses<br/>(External System)"]
@@ -19,5 +19,5 @@ graph TB
     MobileApp -->|"HTTPS / JSON"| WebAPI
 
     WebAPI -->|"SQL via ORM"| DB
-    WebAPI -->|"Internal call"| Connector
+    WebAPI -->|"Internal Call"| Connector
     Connector -->|"HTTPS / JSON"| MyCourses
