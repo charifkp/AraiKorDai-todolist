@@ -83,7 +83,7 @@ class TestViewTodoDetails:
         # Ensure Due Date line was not printed
         mock_print.assert_any_call(f"ID: {todo.id}")
         # Build the Due Date string and ensure it was not present in any calls
-        due_call = (f"Due Date: {todo.due_date}")
+        due_call = f"Due Date: {todo.due_date}"
         for call in mock_print.call_args_list:
             assert due_call not in call.args
 

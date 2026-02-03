@@ -1,0 +1,21 @@
+C4Deployment
+    title Deployment Diagram for ICT To Do List
+
+    Deployment_Node(student_device, "Student's Device", "Web Browser or Mobile OS") {
+        Container(web_app, "Web Application", "JavaScript, React", "Provides web interface in browser")
+        Container(mobile_app, "Mobile Application", "React Native", "Provides mobile app interface")
+    }
+
+    Deployment_Node(ict_server, "ICT Server", "Ubuntu Linux") {
+        Container(api, "API Application", "Python, Flask", "Hosts the REST API")
+        ContainerDb(db, "Database", "SQLite", "Stores application data")
+        Container(sync_service, "Sync Service", "Python", "Handles background synchronization")
+    }
+
+    System_Ext(mycourses_server, "MyCourses Server", "External e-learning platform")
+
+    Rel(web_app, api, "Makes API calls", "JSON/HTTPS")
+    Rel(mobile_app, api, "Makes API calls", "JSON/HTTPS")
+    Rel(api, db, "Reads from and writes to", "SQL")
+    Rel(sync_service, mycourses_server, "Retrieves assignment data", "HTTPS/JSON")
+    Rel(sync_service, db, "Updates local data", "SQL")
